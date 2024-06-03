@@ -25,12 +25,13 @@
   </UiCard>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiBadge from './UiBadge';
 import UiCard from './UiCard';
 import UiIcon from './UiIcon';
 
-export default {
+export default defineComponent({
   name: 'MeetupCard',
 
   components: {
@@ -59,7 +60,7 @@ export default {
       });
     },
   },
-};
+});
 </script>
 
 <style scoped>

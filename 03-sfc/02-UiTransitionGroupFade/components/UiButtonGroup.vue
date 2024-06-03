@@ -35,8 +35,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'UiButtonGroup',
 
   props: {
@@ -54,7 +56,7 @@ export default {
       this.$emit('update:view', value);
     },
   },
-};
+});
 </script>
 
 <style scoped>

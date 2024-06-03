@@ -8,11 +8,12 @@
   </UiTransitionGroupFade>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import MeetupCard from './MeetupCard.vue';
 import UiTransitionGroupFade from './UiTransitionGroupFade.vue';
 
-export default {
+export default defineComponent({
   name: 'MeetupsList',
 
   components: {
@@ -26,7 +27,7 @@ export default {
       required: true,
     },
   },
-};
+});
 </script>
 
 <style scoped>

@@ -4,8 +4,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'UiAlert',
 
   props: {
@@ -14,7 +16,7 @@ export default {
       default: 'Error...',
     },
   },
-};
+});
 </script>
 
 <style scoped>

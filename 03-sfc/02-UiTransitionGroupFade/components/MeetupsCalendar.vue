@@ -2,8 +2,10 @@
   <div class="meetups-calendar">Календарь</div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'MeetupsCalendar',
 
   props: {
@@ -12,7 +14,7 @@ export default {
       required: true,
     },
   },
-};
+});
 </script>
 
 <style scoped></style>
