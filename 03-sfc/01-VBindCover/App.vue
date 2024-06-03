@@ -8,10 +8,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import MeetupCover from './components/MeetupCover.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: { MeetupCover },
@@ -29,7 +30,7 @@ export default {
       },
     };
   },
-};
+});
 </script>
 
 <style></style>
