@@ -32,15 +32,16 @@
   </UiContainer>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiFormGroup from './components/UiFormGroup.vue';
 import UiContainer from './components/UiContainer.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: { UiContainer, UiFormGroup },
-};
+});
 </script>
 
 <style scoped>
