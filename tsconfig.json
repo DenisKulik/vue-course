@@ -1,6 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["**/*.ts", "**/*.vue"],
+  "include": ["**/*.ts", "**/*.vue", "04-vue-cli/02-TheToaster/main.js"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "lib": ["ES2022", "DOM"],

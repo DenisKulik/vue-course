@@ -6,10 +6,11 @@
   </p>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import TheToaster from './components/TheToaster.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: { TheToaster },
@@ -23,5 +24,5 @@ export default {
       this.$refs.toaster.error('Error ' + new Date().toLocaleTimeString());
     },
   },
-};
+});
 </script>
