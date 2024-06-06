@@ -20,7 +20,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiDropdown from './components/UiDropdown.vue';
 
 const agendaIconMap = {
@@ -72,7 +73,7 @@ const agendaItemTypes = [
   icon: agendaIconMap[item.value],
 }));
 
-export default {
+export default defineComponent({
   name: 'App',
   components: { UiDropdown },
   data() {
@@ -100,7 +101,7 @@ export default {
       this.agendaItemTypes.pop();
     },
   },
-};
+});
 </script>
 
 <style></style>

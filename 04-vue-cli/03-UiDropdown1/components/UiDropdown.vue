@@ -1,31 +1,90 @@
 <template>
-  <div class="dropdown dropdown_opened">
-    <button type="button" class="dropdown__toggle dropdown__toggle_icon">
-      <UiIcon icon="tv" class="dropdown__icon" />
-      <span>Title</span>
+  <div class="dropdown" :class="{ dropdown_opened: activeDropdown }">
+    <button
+      type="button"
+      class="dropdown__toggle"
+      :class="{ dropdown__toggle_icon: hasIcon }"
+      @click="activeDropdown = !activeDropdown"
+    >
+      <UiIcon v-if="selectedOption?.icon" :icon="selectedOption.icon" class="dropdown__icon" />
+      <span>{{ selectedTitle }}</span>
     </button>
 
-    <div class="dropdown__menu" role="listbox">
-      <button class="dropdown__item dropdown__item_icon" role="option" type="button">
-        <UiIcon icon="tv" class="dropdown__icon" />
-        Option 1
-      </button>
-      <button class="dropdown__item dropdown__item_icon" role="option" type="button">
-        <UiIcon icon="tv" class="dropdown__icon" />
-        Option 2
+    <div v-show="activeDropdown" class="dropdown__menu" role="listbox">
+      <button
+        v-for="option in options"
+        :key="option.value"
+        class="dropdown__item"
+        :class="{ dropdown__item_icon: hasIcon }"
+        role="option"
+        type="button"
+        @click="changeOption(option.value)"
+      >
+        <UiIcon v-if="option.icon" :icon="option.icon" class="dropdown__icon" />
+        {{ option.text }}
       </button>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
+import type { PropType } from 'vue';
 import UiIcon from './UiIcon.vue';
 
-export default {
+type Option = {
+  value: string;
+  text: string;
+  icon?: string;
+};
+
+export default defineComponent({
   name: 'UiDropdown',
 
   components: { UiIcon },
-};
+
+  props: {
+    options: {
+      type: Array as PropType<Option[]>,
+      required: true,
+    },
+    modelValue: {
+      type: String,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+  },
+
+  data: () => ({
+    activeDropdown: false,
+  }),
+
+  emits: ['update:modelValue'],
+
+  computed: {
+    selectedOption() {
+      return this.options.find((option) => option.value === this.modelValue);
+    },
+
+    hasIcon() {
+      return this.options.some((option) => option.icon);
+    },
+
+    selectedTitle() {
+      return this.selectedOption?.text || this.title;
+    },
+  },
+
+  methods: {
+    changeOption(value: string) {
+      this.$emit('update:modelValue', value);
+      this.activeDropdown = false;
+    },
+  },
+});
 </script>
 
 <style scoped>
