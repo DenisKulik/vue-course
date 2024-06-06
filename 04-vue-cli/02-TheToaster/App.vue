@@ -9,6 +9,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import TheToaster from './components/TheToaster.vue';
+import type { ComponentPublicInstance } from 'vue';
+
+type ToasterInstance = ComponentPublicInstance<{
+  success: (message: string) => void;
+  error: (message: string) => void;
+}>;
 
 export default defineComponent({
   name: 'App',
@@ -17,11 +23,11 @@ export default defineComponent({
 
   methods: {
     handleSuccessClick() {
-      this.$refs.toaster.success('Success ' + new Date().toLocaleTimeString());
+      (this.$refs.toaster as ToasterInstance).success('Success ' + new Date().toLocaleTimeString());
     },
 
     handleErrorClick() {
-      this.$refs.toaster.error('Error ' + new Date().toLocaleTimeString());
+      (this.$refs.toaster as ToasterInstance).error('Error ' + new Date().toLocaleTimeString());
     },
   },
 });
