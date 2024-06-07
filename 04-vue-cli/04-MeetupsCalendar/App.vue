@@ -4,7 +4,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import MeetupsCalendar from './components/MeetupsCalendar.vue';
 
 let dates = [];
@@ -38,7 +39,7 @@ const meetups = dates.map((dateISO, index) => {
   };
 });
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: { MeetupsCalendar },
@@ -48,7 +49,7 @@ export default {
       meetups,
     };
   },
-};
+});
 </script>
 
 <style></style>
