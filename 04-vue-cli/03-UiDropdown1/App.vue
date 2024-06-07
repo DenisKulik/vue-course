@@ -33,9 +33,17 @@ const agendaIconMap = {
   closing: 'key',
   afterparty: 'cal-sm',
   other: 'cal-sm',
+} as const;
+
+type AgendaItemType = keyof typeof agendaIconMap;
+
+type AgendaItem = {
+  value: AgendaItemType;
+  text: string;
+  icon?: string;
 };
 
-const agendaItemTypes = [
+const baseAgendaItemTypes: Omit<AgendaItem, 'icon'>[] = [
   {
     value: 'registration',
     text: 'Регистрация',
@@ -68,7 +76,9 @@ const agendaItemTypes = [
     value: 'other',
     text: 'Другое',
   },
-].map((item) => ({
+];
+
+const agendaItemTypes: AgendaItem[] = baseAgendaItemTypes.map((item) => ({
   ...item,
   icon: agendaIconMap[item.value],
 }));
@@ -91,7 +101,7 @@ export default defineComponent({
       ],
 
       selectedLang: 'EN',
-      selectedType: undefined,
+      selectedType: undefined as AgendaItemType | undefined,
       selectedMixed: undefined,
     };
   },
