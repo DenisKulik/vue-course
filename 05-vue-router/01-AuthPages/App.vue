@@ -2,24 +2,25 @@
   <div class="wrapper">
     <MeetupsHeader />
     <main class="main">
-      <div>CURRENT PAGE</div>
+      <RouterView />
     </main>
     <MeetupsFooter />
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import MeetupsHeader from './components/MeetupsHeader.vue';
 import MeetupsFooter from './components/MeetupsFooter.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: {
     MeetupsFooter,
     MeetupsHeader,
   },
-};
+});
 </script>
 
 <style>

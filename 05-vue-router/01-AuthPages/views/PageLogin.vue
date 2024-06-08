@@ -16,17 +16,20 @@
         <div class="form__buttons">
           <button type="submit" class="button button_primary button_block">Войти</button>
         </div>
-        <div class="form__append">Нет аккаунта? <a href="/register" class="link">Зарегистрируйтесь</a></div>
+        <div class="form__append">
+          Нет аккаунта? <RouterLink to="/register" class="link">Зарегистрируйтесь</RouterLink>
+        </div>
       </form>
     </UiContainer>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiFormGroup from '../components/UiFormGroup.vue';
 import UiContainer from '../components/UiContainer.vue';
 
-export default {
+export default defineComponent({
   name: 'PageLogin',
 
   components: {
@@ -36,10 +39,11 @@ export default {
 
   methods: {
     handleSubmit() {
-      // Требуется обработать сабмит формы
+      const route = this.$route.query.from ? this.$route.query.from : '/';
+      this.$router.push(route);
     },
   },
-};
+});
 </script>
 
 <style></style>
