@@ -1,11 +1,22 @@
 <template>
-  <a class="tabs__tab tabs__tab_active" role="tab">Tab</a>
+  <RouterLink :to="to" class="tabs__tab" exact-active-class="tabs__tab_active" role="tab">
+    <slot />
+  </RouterLink>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'UiTabsLink',
-};
+
+  props: {
+    to: {
+      type: String,
+      required: true,
+    },
+  },
+});
 </script>
 
 <style scoped>

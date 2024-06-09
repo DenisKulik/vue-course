@@ -8,18 +8,19 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import MeetupsHeader from './components/MeetupsHeader.vue';
 import MeetupsFooter from './components/MeetupsFooter.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: {
     MeetupsHeader,
     MeetupsFooter,
   },
-};
+});
 </script>
 
 <style>

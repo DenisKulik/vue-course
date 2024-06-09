@@ -2,8 +2,10 @@
   <p class="meetup-description">{{ meetup.description }}</p>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'PageMeetupDescription',
 
   props: {
@@ -12,7 +14,7 @@ export default {
       required: true,
     },
   },
-};
+});
 </script>
 
 <style scoped>

@@ -8,8 +8,10 @@
   </nav>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'MeetupsNav',
 
   computed: {
@@ -17,7 +19,7 @@ export default {
       return this.$route.meta.showReturnToMeetups;
     },
   },
-};
+});
 </script>
 
 <style scoped>
