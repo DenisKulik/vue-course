@@ -9,15 +9,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiContainer from '../components/UiContainer.vue';
 
-export default {
+export default defineComponent({
   name: 'PageNotFound',
   components: {
     UiContainer,
   },
-};
+});
 </script>
 
 <style scoped>
