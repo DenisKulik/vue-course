@@ -5,7 +5,7 @@
   </header>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
 import MeetupsLogo from './MeetupsLogo.vue';
 import MeetupsNav from './MeetupsNav.vue';

@@ -15,13 +15,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import MeetupsHeader from './components/MeetupsHeader.vue';
 import MeetupsFooter from './components/MeetupsFooter.vue';
 import UiContainer from './components/UiContainer.vue';
 import { isAuthenticated, login, logout } from './services/authService.js';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: {
@@ -47,7 +48,7 @@ export default {
       this.isAuthenticated = isAuthenticated();
     },
   },
-};
+});
 </script>
 
 <style>
