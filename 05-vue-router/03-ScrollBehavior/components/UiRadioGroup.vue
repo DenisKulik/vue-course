@@ -15,8 +15,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'UiRadioGroup',
 
   props: {
@@ -38,7 +40,7 @@ export default {
   emits: {
     'update:modelValue': null,
   },
-};
+});
 </script>
 
 <style scoped>

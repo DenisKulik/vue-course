@@ -24,13 +24,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiContainer from '../components/UiContainer.vue';
 import UiAlert from '../components/UiAlert.vue';
 import MeetupCover from '../components/MeetupCover.vue';
 import { fetchMeetup } from '../api.js';
 
-export default {
+export default defineComponent({
   name: 'PageMeetup',
 
   components: { MeetupCover, UiAlert, UiContainer },
@@ -75,7 +76,7 @@ export default {
       this.meetup = meetup;
     },
   },
-};
+});
 </script>
 
 <style scoped>

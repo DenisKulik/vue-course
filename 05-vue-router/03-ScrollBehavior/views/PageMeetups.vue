@@ -37,7 +37,8 @@
   </UiContainer>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import MeetupsList from '../components/MeetupsList';
 import MeetupsCalendar from '../components/MeetupsCalendar';
 import UiRadioGroup from '../components/UiRadioGroup';
@@ -47,7 +48,7 @@ import UiAlert from '../components/UiAlert';
 import UiIcon from '../components/UiIcon';
 import { fetchMeetups } from '../api';
 
-export default {
+export default defineComponent({
   name: 'PageMeetups',
 
   dateFilterOptions: [
@@ -111,7 +112,7 @@ export default {
       this.meetups = meetups;
     });
   },
-};
+});
 </script>
 
 <style scoped>

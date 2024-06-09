@@ -4,13 +4,14 @@
   </footer>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiContainer from './UiContainer.vue';
 
-export default {
+export default defineComponent({
   name: 'MeetupsFooter',
   components: { UiContainer },
-};
+});
 </script>
 
 <style scoped>

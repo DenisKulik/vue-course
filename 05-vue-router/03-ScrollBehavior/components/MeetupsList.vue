@@ -12,10 +12,11 @@
   </ul>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import MeetupsListItem from './MeetupsListItem.vue';
 
-export default {
+export default defineComponent({
   name: 'MeetupsList',
 
   components: {
@@ -28,7 +29,7 @@ export default {
       required: true,
     },
   },
-};
+});
 </script>
 
 <style scoped>

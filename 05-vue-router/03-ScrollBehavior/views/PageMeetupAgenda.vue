@@ -9,8 +9,10 @@
   </ul>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'PageMeetupAgenda',
 
   props: {
@@ -19,7 +21,7 @@ export default {
       required: true,
     },
   },
-};
+});
 </script>
 
 <style></style>

@@ -15,8 +15,10 @@
   </article>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'UiCard',
 
   props: {
@@ -29,7 +31,7 @@ export default {
       required: false,
     },
   },
-};
+});
 </script>
 
 <style scoped>
