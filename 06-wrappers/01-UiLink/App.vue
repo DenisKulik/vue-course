@@ -19,11 +19,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { RouterLink } from 'vue-router';
 import UiLink from './components/UiLink.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: { UiLink },
@@ -33,7 +34,7 @@ export default {
       return RouterLink;
     },
   },
-};
+});
 </script>
 
 <style>
