@@ -20,10 +20,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiButton from './components/UiButton.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
   components: { UiButton },
   methods: {
@@ -31,7 +32,7 @@ export default {
       alert('Clicked');
     },
   },
-};
+});
 </script>
 
 <style>
