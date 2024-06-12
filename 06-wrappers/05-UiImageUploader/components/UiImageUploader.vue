@@ -1,16 +1,101 @@
 <template>
   <div class="image-uploader">
-    <label class="image-uploader__preview image-uploader__preview-loading" style="--bg-url: url('/link.jpeg')">
-      <span class="image-uploader__text">Загрузить изображение</span>
-      <input type="file" accept="image/*" class="image-uploader__input" />
+    <label
+      class="image-uploader__preview"
+      :class="{ 'image-uploader__preview-loading': isLoading }"
+      :style="{ '--bg-url': `url(${imageUrl})` }"
+    >
+      <span class="image-uploader__text">{{ textInfo }}</span>
+      <input
+        ref="input"
+        type="file"
+        accept="image/*"
+        class="image-uploader__input"
+        v-bind="$attrs"
+        @change="handleSelect"
+        @click="handleClick"
+      />
     </label>
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'UiImageUploader',
-};
+
+  emits: ['select', 'upload', 'error', 'remove'],
+
+  inheritAttrs: false,
+
+  props: {
+    preview: String,
+    uploader: Function,
+  },
+
+  data() {
+    return {
+      imageUrl: '' as string | null,
+      isLoading: false as boolean,
+    };
+  },
+
+  created() {
+    if (this.preview) {
+      this.imageUrl = this.preview;
+    }
+  },
+
+  computed: {
+    textInfo() {
+      if (this.isLoading) return 'Загрузка...';
+      return this.imageUrl ? 'Удалить изображение' : 'Загрузить изображение';
+    },
+  },
+
+  methods: {
+    async handleSelect(event: Event) {
+      this.$emit('select', event.target.files[0]);
+
+      if (this.uploader) {
+        try {
+          this.isLoading = true;
+          const result = await this.uploader(event.target.files[0]);
+          this.$emit('upload', result);
+          this.imageUrl = URL.createObjectURL(event.target.files[0]);
+        } catch (error) {
+          this.$refs.input.value = '';
+          this.$emit('error', error);
+        } finally {
+          this.isLoading = false;
+        }
+      } else {
+        this.imageUrl = URL.createObjectURL(event.target.files[0]);
+      }
+    },
+
+    handleClick(event: Event) {
+      if (this.imageUrl) {
+        event.preventDefault();
+        this.handleRemove();
+        return;
+      }
+    },
+
+    handleRemove() {
+      this.$emit('remove');
+      this.$refs.input.value = '';
+      this.imageUrl = '';
+    },
+  },
+
+  watch: {
+    preview() {
+      this.imageUrl = this.preview;
+    },
+  },
+});
 </script>
 
 <style scoped>

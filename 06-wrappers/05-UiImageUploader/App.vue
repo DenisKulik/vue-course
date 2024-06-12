@@ -29,11 +29,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiImageUploader from './components/UiImageUploader.vue';
 import { uploadImage } from './ImageService.js';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: { UiImageUploader },
@@ -68,7 +69,7 @@ export default {
       this.log.push(`[ERROR]: ${error.message}`);
     },
   },
-};
+});
 </script>
 
 <style>
