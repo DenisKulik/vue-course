@@ -48,12 +48,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiInput from './components/UiInput.vue';
 import UiIcon from './components/UiIcon.vue';
 import UiFormGroup from './components/UiFormGroup.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: { UiFormGroup, UiIcon, UiInput },
@@ -65,7 +66,7 @@ export default {
       focused: false,
     };
   },
-};
+});
 </script>
 
 <style>

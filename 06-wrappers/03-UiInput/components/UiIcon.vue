@@ -2,7 +2,8 @@
   <img class="icon" :alt="icon" :src="iconSrc" />
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import AlertCircle from '@/assets/icons/icon-alert-circle.svg';
 import CalSm from '@/assets/icons/icon-cal-sm.svg';
 import CalLg from '@/assets/icons/icon-cal-lg.svg';
@@ -41,7 +42,7 @@ const icons = {
   user: User,
 };
 
-export default {
+export default defineComponent({
   name: 'UiIcon',
 
   props: {
@@ -57,7 +58,7 @@ export default {
       return icons[this.icon];
     },
   },
-};
+});
 </script>
 
 <style scoped>

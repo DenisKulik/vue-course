@@ -1,21 +1,98 @@
 <template>
-  <div class="input-group input-group_icon input-group_icon-left input-group_icon-right">
-    <div class="input-group__icon">
-      <img class="icon" alt="icon" />
+  <div
+    class="input-group"
+    :class="{
+      'input-group_icon': showIconLeft || showIconRight,
+      'input-group_icon-left': showIconLeft,
+      'input-group_icon-right': showIconRight,
+    }"
+  >
+    <div v-if="showIconLeft" class="input-group__icon">
+      <slot name="left-icon" />
     </div>
 
-    <input ref="input" class="form-control form-control_rounded form-control_sm" />
+    <component
+      :is="componentType"
+      ref="input"
+      class="form-control"
+      :class="{ 'form-control_sm': small, 'form-control_rounded': rounded }"
+      v-bind="$attrs"
+      :value="modelValue"
+      @[updateEvent]="updateInput"
+    />
 
-    <div class="input-group__icon">
-      <img class="icon" alt="icon" />
+    <div v-if="showIconRight" class="input-group__icon">
+      <slot name="right-icon" />
     </div>
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'UiInput',
-};
+
+  inheritAttrs: false,
+
+  props: {
+    small: {
+      type: Boolean,
+      default: false,
+    },
+
+    rounded: {
+      type: Boolean,
+      default: false,
+    },
+
+    multiline: {
+      type: Boolean,
+      default: false,
+    },
+
+    modelValue: {
+      type: String,
+      default: '',
+    },
+
+    modelModifiers: {
+      default: () => ({
+        lazy: false,
+      }),
+    },
+  },
+
+  emits: ['update:modelValue'],
+
+  computed: {
+    componentType() {
+      return this.multiline ? 'textarea' : 'input';
+    },
+
+    showIconLeft() {
+      return Boolean(this.$slots['left-icon']);
+    },
+
+    showIconRight() {
+      return Boolean(this.$slots['right-icon']);
+    },
+
+    updateEvent() {
+      return this.modelModifiers.lazy ? 'change' : 'input';
+    },
+  },
+
+  methods: {
+    updateInput(event: Event) {
+      this.$emit('update:modelValue', (event.target as HTMLInputElement).value);
+    },
+
+    focus() {
+      (this.$refs.input as HTMLInputElement).focus();
+    },
+  },
+});
 </script>
 
 <style scoped>
