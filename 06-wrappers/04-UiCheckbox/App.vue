@@ -24,10 +24,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiCheckbox from './components/UiCheckbox.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
   components: { UiCheckbox },
 
@@ -38,7 +39,7 @@ export default {
       checkedSet: new Set(),
     };
   },
-};
+});
 </script>
 
 <style>
