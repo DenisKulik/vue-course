@@ -5,10 +5,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import CounterButton from './components/CounterButton.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
   components: { CounterButton },
   data() {
@@ -16,7 +17,7 @@ export default {
       count: 1,
     };
   },
-};
+});
 </script>
 
 <style>

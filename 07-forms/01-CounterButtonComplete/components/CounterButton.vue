@@ -1,9 +1,47 @@
 <template>
-  <button></button>
+  <button @click="increment">{{ localCount }}</button>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'CounterButton',
-};
+
+  props: {
+    count: {
+      type: Number,
+      default: 0,
+    },
+  },
+
+  emits: ['update:count'],
+
+  data: () => ({
+    localCount: 0,
+  }),
+
+  mounted() {
+    this.localCount = this.count;
+  },
+
+  methods: {
+    increment() {
+      this.localCount += 1;
+    },
+  },
+
+  watch: {
+    count: {
+      handler() {
+        this.localCount = this.count;
+      },
+      immediate: true,
+    },
+
+    localCount(newValue) {
+      this.$emit('update:count', newValue);
+    },
+  },
+});
 </script>
