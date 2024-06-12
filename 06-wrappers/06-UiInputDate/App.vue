@@ -34,12 +34,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiIcon from './components/UiIcon.vue';
 import UiInputDate from './components/UiInputDate.vue';
 import UiFormGroup from './components/UiFormGroup.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: { UiFormGroup, UiIcon, UiInputDate },
@@ -50,7 +51,7 @@ export default {
       showIcons: true,
     };
   },
-};
+});
 </script>
 
 <style>
