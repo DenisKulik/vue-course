@@ -4,14 +4,16 @@
   </component>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
+
 const buttonClasses = {
   primary: 'button_primary',
   secondary: 'button_secondary',
   danger: 'button_danger',
 };
 
-export default {
+export default defineComponent({
   name: 'UiButton',
 
   props: {
@@ -44,7 +46,7 @@ export default {
       return undefined;
     },
   },
-};
+});
 </script>
 
 <style scoped>

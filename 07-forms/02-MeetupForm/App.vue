@@ -15,11 +15,34 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import MeetupForm from './components/MeetupForm.vue';
 import { createAgendaItem, createMeetup } from './meetupService.js';
 
-export default {
+type AgendaItemType = {
+  id: number;
+  startsAt: string;
+  endsAt: string;
+  type: string;
+  title: string;
+  description: string;
+  speaker: string;
+  language: string;
+};
+
+type MeetupType = {
+  id: number;
+  title: string;
+  date: number;
+  place: string;
+  description: string;
+  image: string | null;
+  imageToUpload?: File | null;
+  agenda: AgendaItemType[];
+};
+
+export default defineComponent({
   name: 'App',
 
   components: { MeetupForm },
@@ -32,7 +55,7 @@ export default {
   },
 
   methods: {
-    handleSubmit(meetup) {
+    handleSubmit(meetup: MeetupType) {
       this.meetup = meetup;
       alert(JSON.stringify(this.meetup, null, 2));
     },
@@ -57,7 +80,7 @@ export default {
       };
     },
   },
-};
+});
 </script>
 
 <style>

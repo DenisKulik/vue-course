@@ -43,12 +43,13 @@
   </fieldset>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiFormGroup from './UiFormGroup.vue';
 import UiIcon from './UiIcon.vue';
 import UiInput from './UiInput.vue';
 
-export default {
+export default defineComponent({
   name: 'MeetupAgendaItemForm',
 
   components: { UiInput, UiIcon, UiFormGroup },
@@ -61,7 +62,7 @@ export default {
   },
 
   emits: ['update:agendaItem', 'remove'],
-};
+});
 </script>
 
 <style scoped>
