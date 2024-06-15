@@ -7,10 +7,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import MeetupAgendaItemForm from './components/MeetupAgendaItemForm.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: { MeetupAgendaItemForm },
@@ -35,7 +36,7 @@ export default {
       alert('removed');
     },
   },
-};
+});
 </script>
 
 <style>
