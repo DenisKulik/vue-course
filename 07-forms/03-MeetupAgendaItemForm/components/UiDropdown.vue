@@ -26,10 +26,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiIcon from './UiIcon.vue';
 
-export default {
+export default defineComponent({
   name: 'UiDropdown',
 
   components: { UiIcon },
@@ -94,7 +95,7 @@ export default {
       this.$emit('update:modelValue', value);
     },
   },
-};
+});
 </script>
 
 <style scoped>
