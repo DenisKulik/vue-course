@@ -5,12 +5,13 @@
   </template>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { SensorsDataController } from '../services/SensorsDataController';
 import { SensorsDataStreamingService } from '../services/SensorsDataStreamingService';
 import SensorsDataRow from './SensorsDataRow';
 
-export default {
+export default defineComponent({
   name: 'SensorsDataView',
 
   components: { SensorsDataRow },
@@ -27,7 +28,7 @@ export default {
 
     // Раз в секунду запрашиваем и выводим новые данные сенсоров
     setInterval(() => {
-      this.sensorsDataController.getData();
+      const data = this.sensorsDataController.getData();
     }, 1000);
   },
 
@@ -42,10 +43,14 @@ export default {
     },
 
     setData(sensors) {
-      this.sensors = sensors;
+      this.sensors = {};
+
+      for (const sensorId in sensors) {
+        this.sensors[sensorId] = { ...sensors[sensorId] };
+      }
     },
   },
-};
+});
 </script>
 
 <style scoped></style>

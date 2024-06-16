@@ -4,15 +4,16 @@
   </UiContainer>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiContainer from './components/UiContainer';
 import SensorsDataContainer from './components/SensorsDataView';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: { SensorsDataContainer, UiContainer },
-};
+});
 </script>
 
 <style></style>
