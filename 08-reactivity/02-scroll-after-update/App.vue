@@ -6,13 +6,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import MiniMessenger from './components/MiniMessenger';
 
-export default {
+export default defineComponent({
   name: 'App',
   components: { MiniMessenger },
-};
+});
 </script>
 
 <style></style>

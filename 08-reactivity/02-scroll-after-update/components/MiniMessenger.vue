@@ -1,6 +1,6 @@
 <template>
   <main class="mini-messenger">
-    <ul class="messages">
+    <ul ref="messages" class="messages">
       <li v-for="message in messages" :key="message.id" class="message">
         {{ message.text }}
       </li>
@@ -13,10 +13,12 @@
   </main>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
+
 let lastId = 0;
 
-export default {
+export default defineComponent({
   name: 'MiniMessenger',
 
   data() {
@@ -42,9 +44,14 @@ export default {
         text: this.newMessage,
       });
       this.newMessage = '';
+
+      this.$nextTick(() => {
+        const messages = this.$refs.messages as HTMLUListElement;
+        messages.scrollTop = messages.scrollHeight;
+      });
     },
   },
-};
+});
 </script>
 
 <style scoped>
