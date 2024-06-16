@@ -5,11 +5,11 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue';
+<script lang="ts">
+import { ref, defineComponent } from 'vue';
 import { debouncedRef } from './utils/debouncedRef';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   created() {
@@ -20,7 +20,7 @@ export default {
 
     this.debouncedSource = debouncedRef(this.source, 1000);
   },
-};
+});
 </script>
 
 <style></style>
