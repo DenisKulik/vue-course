@@ -5,11 +5,11 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue';
+<script lang="ts">
+import { ref, defineComponent } from 'vue';
 import { refHistory } from './utils/refHistory';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   created() {
@@ -21,7 +21,7 @@ export default {
     const { history } = refHistory(this.source);
     this.history = history;
   },
-};
+});
 </script>
 
 <style></style>
