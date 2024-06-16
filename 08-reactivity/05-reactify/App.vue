@@ -10,11 +10,11 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue';
+<script lang="ts">
+import { ref, defineComponent } from 'vue';
 import { reactify } from './utils/reactify';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   created() {
@@ -22,9 +22,9 @@ export default {
     // Для примера и ручного тестирования подойдёт и такое нетипичное решение
 
     // Исходные обычные чистые функции
-    const sum = (a, b) => a + b;
-    const sqr = (num) => num ** 2;
-    const minutesToHHMM = (minutes) =>
+    const sum = (a: number, b: number) => a + b; // (a, b) => a + b;
+    const sqr = (num: number) => num ** 2;
+    const minutesToHHMM = (minutes: number) =>
       `${Math.floor(minutes / 60)
         .toString()
         .padStart(2, '0')}:${(minutes % 60).toString().padStart(2, '0')}`;
@@ -45,7 +45,7 @@ export default {
     this.computedMinutesToHHMMSqrFoo = reactiveMinutesToHHMM(this.computedSqrFoo);
     // this.computedStringLength = reactiveSum(a, b);
   },
-};
+});
 </script>
 
 <style></style>
