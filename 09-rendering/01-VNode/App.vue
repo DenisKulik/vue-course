@@ -6,11 +6,11 @@
   </div>
 </template>
 
-<script>
-import { h } from 'vue';
+<script lang="ts">
+import { h, defineComponent } from 'vue';
 import VNode from './components/VNode.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: { VNode },
@@ -20,7 +20,7 @@ export default {
       return [h('h1', 'Header'), h('div', 'Some Div')];
     },
   },
-};
+});
 </script>
 
 <style></style>
