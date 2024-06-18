@@ -12,8 +12,8 @@
   </div>
 </template>
 
-<script>
-import { computed } from 'vue';
+<script lang="ts">
+import { computed, defineComponent } from 'vue';
 import TemplateRenderer from './components/TemplateRenderer.vue';
 import UiAlert from './components/UiAlert.vue';
 
@@ -23,7 +23,7 @@ const initialTemplate = `<div>
   bar = <input v-model="bindings.bar.value" />
 </div>`;
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: { TemplateRenderer },
@@ -53,7 +53,7 @@ export default {
       return { UiAlert };
     },
   },
-};
+});
 </script>
 
 <style></style>
