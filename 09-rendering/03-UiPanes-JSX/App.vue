@@ -27,17 +27,18 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiPanes from './components/UiPanes.vue';
 import UiButton from './components/UiButton.vue';
 import UiInput from './components/UiInput.vue';
 import UiIcon from './components/UiIcon.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: { UiIcon, UiInput, UiButton, UiPanes },
-};
+});
 </script>
 
 <style></style>

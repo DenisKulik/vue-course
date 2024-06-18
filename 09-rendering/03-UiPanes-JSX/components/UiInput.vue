@@ -30,8 +30,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'UiInput',
   inheritAttrs: false,
 
@@ -75,7 +77,7 @@ export default {
       this.$refs['input'].focus();
     },
   },
-};
+});
 </script>
 
 <style scoped>

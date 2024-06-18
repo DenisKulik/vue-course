@@ -4,17 +4,24 @@
   </component>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 // Опишем отдельно соотношение между вариантами кнопок и классами.
 // Если бы вёрстка не была готовой, проще было бы делать классы эквивалентными вариантам,
 // но работаем с тем, что имеем.
-const buttonClasses = {
+type ButtonClassesType = {
+  primary: string;
+  secondary: string;
+  danger: string;
+};
+
+const buttonClasses: ButtonClassesType = {
   primary: 'button_primary',
   secondary: 'button_secondary',
   danger: 'button_danger',
 };
 
-export default {
+export default defineComponent({
   name: 'UiButton',
 
   props: {
@@ -36,7 +43,7 @@ export default {
 
     type: {
       type: String,
-    }
+    },
   },
 
   computed: {
@@ -52,7 +59,7 @@ export default {
       return this.type;
     },
   },
-};
+});
 </script>
 
 <style scoped>

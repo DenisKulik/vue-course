@@ -1,18 +1,18 @@
-<template>
+<!-- <template>
   <div class="panes">
-    <!--  Pane 0 -->
+     Pane 0
     <div class="pane">
       <div class="pane__content">
-        <!-- Определяем, какой именно слот рендерить по массиву порядка панелей -->
+        Определяем, какой именно слот рендерить по массиву порядка панелей
         <slot :name="`pane-${panes[0]}`" />
       </div>
       <div class="pane__controls">
-        <!-- Скрываем кнопку классом pane__disabled-button -->
+        Скрываем кнопку классом pane__disabled-button
         <UiButton class="pane__disabled-button" variant="secondary" block @click="up(0)"> Up </UiButton>
         <UiButton variant="danger" block @click="down(0)"> Down </UiButton>
       </div>
     </div>
-    <!--  Pane 1 -->
+     Pane 1
     <div class="pane">
       <div class="pane__content">
         <slot :name="`pane-${panes[1]}`" />
@@ -22,7 +22,7 @@
         <UiButton variant="danger" block @click="down(1)"> Down </UiButton>
       </div>
     </div>
-    <!--  Pane 2 -->
+     Pane 2
     <div class="pane">
       <div class="pane__content">
         <slot :name="`pane-${panes[2]}`" />
@@ -33,7 +33,7 @@
       </div>
     </div>
   </div>
-</template>
+</template> -->
 
 <script lang="jsx">
 // Предлагается решать задачу с использованием JSX, но вы можете использовать и чистые рендер-функции
