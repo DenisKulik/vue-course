@@ -2,15 +2,15 @@
   <slot />
 </template>
 
-<script>
-// Этот компонент используется только для передачи данных и содержимого в UiTabs
+<script lang="ts">
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'UiTab',
 
   props: {
     name: String,
     title: String,
   },
-};
+});
 </script>
