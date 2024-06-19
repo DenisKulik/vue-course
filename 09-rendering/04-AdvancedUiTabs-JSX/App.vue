@@ -30,7 +30,7 @@ import { defineComponent } from 'vue';
 import UiTabs from './components/UiTabs.vue';
 import UiTab from './components/UiTab.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: { UiTab, UiTabs },
@@ -40,7 +40,7 @@ export default {
       activeTab: 'tab1',
     };
   },
-};
+});
 </script>
 
 <style></style>
