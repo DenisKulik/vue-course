@@ -12,13 +12,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiPaginationView from './components/UiPaginationView.vue';
 import UiButton from './components/UiButton.vue';
 import MeetupCard from './components/MeetupCard.vue';
 import meetups from './meetups.json';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: { MeetupCard, UiButton, UiPaginationView },
@@ -36,7 +37,7 @@ export default {
       return Math.ceil(this.meetups.length / this.perPage);
     },
   },
-};
+});
 </script>
 
 <style scoped>

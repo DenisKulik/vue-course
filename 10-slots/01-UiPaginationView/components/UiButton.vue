@@ -4,14 +4,23 @@
   </component>
 </template>
 
-<script>
-const buttonClasses = {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+type BadgeType = 'primary' | 'success' | 'danger';
+
+type BadgeClassesType = {
+  primary: string;
+  success: string;
+};
+
+const buttonClasses: BadgeClassesType = {
   primary: 'button_primary',
   secondary: 'button_secondary',
   danger: 'button_danger',
 };
 
-export default {
+export default defineComponent({
   name: 'UiButton',
 
   props: {
@@ -26,9 +35,8 @@ export default {
     },
 
     variant: {
-      type: String,
+      type: String as () => BadgeType,
       default: 'secondary',
-      validator: (value) => Object.keys(buttonClasses).includes(value),
     },
   },
 
@@ -44,7 +52,7 @@ export default {
       return undefined;
     },
   },
-};
+});
 </script>
 
 <style scoped>

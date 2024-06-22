@@ -1,11 +1,13 @@
 <template>
   <div class="pagination-container">
-    <!-- Контент страницы -->
+    <slot v-for="item in paginatedItems" :key="item" :item="item" />
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'UiPaginationView',
 
   props: {
@@ -26,7 +28,13 @@ export default {
       required: true,
     },
   },
-};
+
+  computed: {
+    paginatedItems() {
+      return this.items.slice((this.page - 1) * this.perPage, this.page * this.perPage);
+    },
+  },
+});
 </script>
 
 <style></style>
