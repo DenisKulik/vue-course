@@ -15,10 +15,11 @@
   </ul>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiIcon from './UiIcon.vue';
 
-export default {
+export default defineComponent({
   name: 'MeetupInfo',
 
   components: { UiIcon },
@@ -53,7 +54,7 @@ export default {
       return new Date(this.date).toISOString().substr(0, 10);
     },
   },
-};
+});
 </script>
 
 <style scoped>

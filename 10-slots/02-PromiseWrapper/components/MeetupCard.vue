@@ -12,12 +12,13 @@
   </UiCard>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiBadge from './UiBadge.vue';
 import UiCard from './UiCard.vue';
 import MeetupInfo from './MeetupInfo.vue';
 
-export default {
+export default defineComponent({
   name: 'MeetupCard',
 
   components: {
@@ -32,7 +33,7 @@ export default {
       required: true,
     },
   },
-};
+});
 </script>
 
 <style scoped>

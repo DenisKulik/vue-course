@@ -20,13 +20,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import MeetupCard from './components/MeetupCard.vue';
 import PromiseWrapper from './components/PromiseWrapper.vue';
 import UiAlert from './components/UiAlert.vue';
 import { fetchMeetupById } from './meetupService.js';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: { UiAlert, PromiseWrapper, MeetupCard },
@@ -45,7 +46,7 @@ export default {
       }
     },
   },
-};
+});
 </script>
 
 <style></style>

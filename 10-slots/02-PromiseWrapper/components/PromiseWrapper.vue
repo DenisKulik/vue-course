@@ -4,14 +4,18 @@
   <slot v-else name="pending" />
 </template>
 
-<script>
-const PromiseStates = {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+type PromiseState = 'pending' | 'fulfilled' | 'rejected';
+
+const PromiseStates: Record<PromiseState, PromiseState> = {
   PENDING: 'pending',
   FULFILLED: 'fulfilled',
   REJECTED: 'rejected',
 };
 
-export default {
+export default defineComponent({
   name: 'PromiseWrapper',
 
   props: {
@@ -58,5 +62,5 @@ export default {
       },
     },
   },
-};
+});
 </script>

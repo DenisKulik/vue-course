@@ -2,13 +2,20 @@
   <span class="badge" :class="badgeClass"><slot /></span>
 </template>
 
-<script>
-const badgeClasses = {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+type badgeClassesType = {
+  primary: string;
+  success: string;
+};
+
+const badgeClasses: badgeClassesType = {
   primary: 'badge_primary',
   success: 'badge_success',
 };
 
-export default {
+export default defineComponent({
   name: 'UiBadge',
 
   props: {
@@ -24,7 +31,7 @@ export default {
       return badgeClasses[this.type];
     },
   },
-};
+});
 </script>
 
 <style scoped>

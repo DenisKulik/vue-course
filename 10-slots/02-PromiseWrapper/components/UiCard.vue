@@ -15,8 +15,10 @@
   </article>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'UiCard',
 
   props: {
@@ -38,7 +40,7 @@ export default {
       return this.cover ? `url('${this.cover}')` : `var(--default-cover)`;
     },
   },
-};
+});
 </script>
 
 <style scoped>
