@@ -1,15 +1,16 @@
 <template>
-  <UiCalendarView>
-    <div v-for="holiday in internationalHolidaysMap[0][7]" :key="holiday" class="holiday">
+  <UiCalendarView v-slot="{ month, day }">
+    <div v-for="holiday in internationalHolidaysMap[month][day]" :key="holiday" class="holiday">
       {{ holiday }}
     </div>
   </UiCalendarView>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiCalendarView from './UiCalendarView.vue';
 
-export default {
+export default defineComponent({
   name: 'InternationalHolidaysCalendar',
 
   components: {
@@ -77,7 +78,7 @@ export default {
       return result;
     },
   },
-};
+});
 </script>
 
 <style scoped>
