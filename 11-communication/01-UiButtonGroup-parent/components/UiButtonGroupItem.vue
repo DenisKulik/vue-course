@@ -1,9 +1,20 @@
 <template>
-  <button class="button-group__button button-group__button_active" type="button" aria-selected="false">Button</button>
+  <button
+    class="button-group__button"
+    :class="{ 'button-group__button_active': isActive }"
+    type="button"
+    :aria-selected="isActive"
+    @click="onClick"
+  >
+    <slot />
+  </button>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+import UiButtonGroup from './UiButtonGroup.vue';
+
+export default defineComponent({
   name: 'UiButtonGroupItem',
 
   props: {
@@ -11,7 +22,25 @@ export default {
       required: true,
     },
   },
-};
+
+  beforeCreate() {
+    if (this.$parent.$options.name !== UiButtonGroup.name) {
+      console.warn(`${this.$options.name} must be used as direct child content of ${UiButtonGroup.name}`);
+    }
+  },
+
+  computed: {
+    isActive() {
+      return this.$parent.activeValue === this.value;
+    },
+  },
+
+  methods: {
+    onClick() {
+      this.$parent.updateActiveValue(this.value);
+    },
+  },
+});
 </script>
 
 <style scoped>
