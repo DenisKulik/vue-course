@@ -52,11 +52,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import UiButtonGroup from './components/UiButtonGroup.vue';
 import UiButtonGroupItem from './components/UiButtonGroupItem.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: { UiButtonGroupItem, UiButtonGroup },
@@ -67,7 +68,7 @@ export default {
       participation: '',
     };
   },
-};
+});
 </script>
 
 <style></style>
