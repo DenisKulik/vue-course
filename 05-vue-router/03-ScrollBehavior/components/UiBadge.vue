@@ -17,13 +17,13 @@ export default defineComponent({
     type: {
       type: String,
       required: false,
-      validator: (value) => Object.key(badgeClasses).includes(value),
+      validator: (value: string) => Object.keys(badgeClasses).includes(value),
     },
   },
 
   computed: {
     badgeClass() {
-      return badgeClasses[this.type];
+      return badgeClasses[this.type as keyof typeof badgeClasses] ?? '';
     },
   },
 });

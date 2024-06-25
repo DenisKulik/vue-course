@@ -38,8 +38,8 @@ export default defineComponent({
   },
 
   methods: {
-    handleSubmit() {
-      const route = this.$route.query.from ? this.$route.query.from : '/';
+    handleSubmit(): void {
+      const route = (this.$route.query.from as string) || '/';
       this.$router.push(route);
     },
   },

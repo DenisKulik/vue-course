@@ -27,9 +27,20 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import type { PropType } from 'vue';
 import UiBadge from './UiBadge';
 import UiCard from './UiCard';
 import UiIcon from './UiIcon';
+
+type Meetup = {
+  id: number;
+  title: string;
+  image: string | undefined;
+  description?: string;
+  organizer: string;
+  agenda?: any[];
+  [key: string]: any;
+};
 
 export default defineComponent({
   name: 'MeetupCard',
@@ -42,17 +53,17 @@ export default defineComponent({
 
   props: {
     meetup: {
-      type: Object,
+      type: Object as PropType<Meetup>,
       required: true,
     },
   },
 
   computed: {
-    isoDate() {
+    isoDate(): string {
       return new Date(this.meetup.date).toISOString().split('T')[0];
     },
 
-    localeDate() {
+    localeDate(): string {
       return new Date(this.meetup.date).toLocaleString(navigator.language, {
         year: 'numeric',
         month: 'long',

@@ -15,9 +15,7 @@
             </p>
             <RouterView :meetup="meetup" />
           </div>
-          <div class="meetup__aside">
-            <!-- ... -->
-          </div>
+          <div class="meetup__aside"></div>
         </div>
       </UiContainer>
     </template>
@@ -31,15 +29,24 @@ import UiAlert from '../components/UiAlert.vue';
 import MeetupCover from '../components/MeetupCover.vue';
 import { fetchMeetup } from '../api.js';
 
+type Meetup = {
+  id: number;
+  title: string;
+  image: string | undefined;
+  description?: string;
+  agenda?: any[];
+  [key: string]: any;
+};
+
 export default defineComponent({
   name: 'PageMeetup',
 
   components: { MeetupCover, UiAlert, UiContainer },
 
   beforeRouteEnter(to) {
-    return fetchMeetup(to.params.meetupId)
+    return fetchMeetup(+(to.params.meetupId))
       .then((meetup) => {
-        return (vm) => {
+        return (vm: any) => {
           vm.setMeetup(meetup);
         };
       })
@@ -49,7 +56,7 @@ export default defineComponent({
   beforeRouteUpdate(to, from) {
     if (to.params.meetupId !== from.params.meetupId) {
       this.meetup = null;
-      return fetchMeetup(to.params.meetupId)
+      return fetchMeetup(+(to.params.meetupId))
         .then((meetup) => {
           this.setMeetup(meetup);
         })
@@ -67,12 +74,12 @@ export default defineComponent({
 
   data() {
     return {
-      meetup: null,
+      meetup: null as Meetup | null,
     };
   },
 
   methods: {
-    setMeetup(meetup) {
+    setMeetup(meetup: Meetup) {
       this.meetup = meetup;
     },
   },

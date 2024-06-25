@@ -45,14 +45,14 @@ export default defineComponent({
     view: {
       type: String,
       default: 'list',
-      validator: (value) => ['list', 'calendar'].includes(value),
+      validator: (value: string) => ['list', 'calendar'].includes(value),
     },
   },
 
   emits: ['update:view'],
 
   methods: {
-    select(value) {
+    select(value: string) {
       this.$emit('update:view', value);
     },
   },

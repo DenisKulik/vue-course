@@ -22,7 +22,7 @@ export default defineComponent({
   },
 
   computed: {
-    backgroundImage() {
+    backgroundImage(): string {
       return this.image ? `url(${this.image})` : 'var(--default-cover)';
     },
   },

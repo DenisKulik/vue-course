@@ -28,7 +28,7 @@
 
     <UiTransitionFade>
       <template v-if="meetups">
-        <template v-if="filteredMeetups.length">
+        <template v-if="filteredMeetups?.length">
           <MeetupsList v-if="view === 'list'" :meetups="filteredMeetups" />
           <MeetupsCalendar v-else-if="view === 'calendar'" :meetups="filteredMeetups" />
         </template>
@@ -39,7 +39,7 @@
   </UiContainer>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
 import MeetupsList from '../components/MeetupsList';
 import MeetupsCalendar from '../components/MeetupsCalendar';
@@ -50,6 +50,16 @@ import UiAlert from '../components/UiAlert';
 import UiIcon from '../components/UiIcon';
 import UiTransitionFade from './UiTransitionFade.vue';
 import { fetchMeetups } from '../api';
+
+type Meetup = {
+  id: number;
+  title: string;
+  image: string | undefined;
+  description?: string;
+  organizer: string;
+  agenda?: any[];
+  [key: string]: any;
+};
 
 export default defineComponent({
   name: 'PageMeetups',
@@ -73,7 +83,7 @@ export default defineComponent({
 
   data() {
     return {
-      meetups: null,
+      meetups: null as Meetup[] | null,
 
       filter: {
         date: 'all',
@@ -86,24 +96,24 @@ export default defineComponent({
   },
 
   computed: {
-    filteredMeetups() {
-      const dateFilter = (meetup) =>
+    filteredMeetups(): Meetup[] | undefined {
+      const dateFilter = (meetup: Meetup) =>
         this.filter.date === 'all' ||
         (this.filter.date === 'past' && new Date(meetup.date) <= new Date()) ||
         (this.filter.date === 'future' && new Date(meetup.date) > new Date());
 
-      const participationFilter = (meetup) =>
+      const participationFilter = (meetup: Meetup) =>
         this.filter.participation === 'all' ||
         (this.filter.participation === 'organizing' && meetup.organizing) ||
         (this.filter.participation === 'attending' && meetup.attending);
 
-      const searchFilter = (meetup) =>
+      const searchFilter = (meetup: Meetup) =>
         [meetup.title, meetup.description, meetup.place, meetup.organizer]
           .join(' ')
           .toLowerCase()
           .includes(this.filter.search.toLowerCase());
 
-      return this.meetups.filter((meetup) => dateFilter(meetup) && participationFilter(meetup) && searchFilter(meetup));
+      return this.meetups?.filter((meetup) => dateFilter(meetup) && participationFilter(meetup) && searchFilter(meetup));
     },
   },
 

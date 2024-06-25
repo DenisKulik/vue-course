@@ -11,12 +11,14 @@ import type { PropType } from 'vue';
 import UiIcon from './UiIcon.vue';
 
 type ToastType = 'success' | 'error';
+type IconName = "cal-sm" | "cal-lg" | "tv" | "pill-active" | "alert-circle" | "check"
+  | "clock" | "chevron-down" | "list" | "trash" | "pen-tool"
 
 type Toast = {
   id: string;
   message: string;
   type: ToastType;
-  icon: string;
+  icon: IconName;
 };
 
 export default defineComponent({

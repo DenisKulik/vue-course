@@ -4,6 +4,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import type { PropType } from 'vue';
 import AlertCircle from '@/assets/icons/icon-alert-circle.svg';
 import CalSm from '@/assets/icons/icon-cal-sm.svg';
 import CalLg from '@/assets/icons/icon-cal-lg.svg';
@@ -42,19 +43,21 @@ const icons = {
   user: User,
 };
 
+type IconName = keyof typeof icons;
+
 export default defineComponent({
   name: 'UiIcon',
 
   props: {
     icon: {
-      type: String,
+      type: String as PropType<IconName>,
       required: true,
-      validator: (name) => Object.keys(icons).includes(name),
+      validator: (name: string) => Object.keys(icons).includes(name),
     },
   },
 
   computed: {
-    iconSrc() {
+    iconSrc(): string {
       return icons[this.icon];
     },
   },

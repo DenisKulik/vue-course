@@ -15,7 +15,7 @@ export default defineComponent({
   name: 'MeetupsNav',
 
   computed: {
-    showReturnToMeetups() {
+    showReturnToMeetups(): unknown {
       return this.$route.meta.showReturnToMeetups;
     },
   },

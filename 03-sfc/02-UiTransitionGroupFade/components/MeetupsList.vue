@@ -10,8 +10,19 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import type { PropType } from 'vue';
 import MeetupCard from './MeetupCard.vue';
 import UiTransitionGroupFade from './UiTransitionGroupFade.vue';
+
+type Meetup = {
+  id: number;
+  title: string;
+  image: string | undefined;
+  description?: string;
+  organizer: string;
+  agenda?: any[];
+  [key: string]: any;
+};
 
 export default defineComponent({
   name: 'MeetupsList',
@@ -23,7 +34,7 @@ export default defineComponent({
 
   props: {
     meetups: {
-      type: Array,
+      type: Array as PropType<Meetup[]>,
       required: true,
     },
   },

@@ -53,8 +53,8 @@ export default defineComponent({
   },
 
   methods: {
-    handleSubmit() {
-      const route = this.$route.query.from ? this.$route.query.from : '/login';
+    handleSubmit(): void {
+      const route = (this.$route.query.from as string) || '/login';
       this.$router.push(route);
     },
   },

@@ -79,7 +79,7 @@ export default defineComponent({
   },
 
   methods: {
-    changeOption(value: string) {
+    changeOption(value: string): void {
       this.$emit('update:modelValue', value);
       this.activeDropdown = false;
     },

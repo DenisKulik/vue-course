@@ -4,6 +4,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import type { PropType } from 'vue';
 import AlertCircle from '@/assets/icons/icon-alert-circle.svg';
 import CalSm from '@/assets/icons/icon-cal-sm.svg';
 import CalLg from '@/assets/icons/icon-cal-lg.svg';
@@ -47,7 +48,7 @@ export default defineComponent({
 
   props: {
     icon: {
-      type: String,
+      type: String as PropType<keyof typeof icons>,
       required: true,
       validator: (name) => Object.keys(icons).includes(name),
     },
@@ -55,7 +56,7 @@ export default defineComponent({
 
   computed: {
     iconSrc() {
-      return icons[this.icon];
+      return icons[this.icon] ?? '';
     },
   },
 });

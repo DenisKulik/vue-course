@@ -115,18 +115,18 @@ export default defineComponent({
   },
 
   methods: {
-    formatDate(date: Date) {
+    formatDate(date: Date): string {
       return date.toLocaleDateString(navigator.language, {
         month: 'long',
         year: 'numeric',
       });
     },
 
-    prevMonth() {
+    prevMonth(): void {
       this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 1, 1);
     },
 
-    nextMonth() {
+    nextMonth(): void {
       this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 1);
     },
   },
