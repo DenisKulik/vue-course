@@ -12,7 +12,7 @@ export default defineComponent({
 
   props: {
     tag: {
-      type: [String, Object, Function],
+      type: String,
       default: 'button',
     },
 
@@ -34,11 +34,11 @@ export default defineComponent({
   },
 
   computed: {
-    variantClass() {
+    variantClass(): string {
       return `button_${this.variant}`;
     },
 
-    buttonType() {
+    buttonType(): string {
       return this.tag === 'button' ? (this.type ? this.type : 'button') : this.type;
     },
   },

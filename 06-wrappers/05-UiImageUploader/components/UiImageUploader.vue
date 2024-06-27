@@ -21,6 +21,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import type {PropType} from 'vue';
 
 export default defineComponent({
   name: 'UiImageUploader',
@@ -30,8 +31,14 @@ export default defineComponent({
   inheritAttrs: false,
 
   props: {
-    preview: String,
-    uploader: Function,
+    preview:  {
+      type: String,
+      required: false,
+    },
+    uploader: {
+      type: Function as PropType<(file: File) => Promise<any>>,
+      required: false,
+    },
   },
 
   data() {
@@ -48,7 +55,7 @@ export default defineComponent({
   },
 
   computed: {
-    textInfo() {
+    textInfo(): string {
       if (this.isLoading) return 'Загрузка...';
       return this.imageUrl ? 'Удалить изображение' : 'Загрузить изображение';
     },
@@ -56,22 +63,27 @@ export default defineComponent({
 
   methods: {
     async handleSelect(event: Event) {
-      this.$emit('select', event.target.files[0]);
+      const target = event.target as HTMLInputElement;
+      const file = target.files?.[0];
+
+      if (!file) return;
+
+      this.$emit('select', file);
 
       if (this.uploader) {
         try {
           this.isLoading = true;
-          const result = await this.uploader(event.target.files[0]);
+          const result = await this.uploader(file);
           this.$emit('upload', result);
-          this.imageUrl = URL.createObjectURL(event.target.files[0]);
+          this.imageUrl = URL.createObjectURL(file);
         } catch (error) {
-          this.$refs.input.value = '';
+          target.value = '';
           this.$emit('error', error);
         } finally {
           this.isLoading = false;
         }
       } else {
-        this.imageUrl = URL.createObjectURL(event.target.files[0]);
+        this.imageUrl = URL.createObjectURL(file);
       }
     },
 
@@ -85,14 +97,14 @@ export default defineComponent({
 
     handleRemove() {
       this.$emit('remove');
-      this.$refs.input.value = '';
+      (this.$refs.input as HTMLInputElement).value = '';
       this.imageUrl = '';
     },
   },
 
   watch: {
-    preview() {
-      this.imageUrl = this.preview;
+    preview(newPreview: string | undefined) {
+      this.imageUrl = newPreview ?? '';
     },
   },
 });

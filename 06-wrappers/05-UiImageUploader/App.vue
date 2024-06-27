@@ -34,6 +34,11 @@ import { defineComponent } from 'vue';
 import UiImageUploader from './components/UiImageUploader.vue';
 import { uploadImage } from './ImageService.js';
 
+type UploadResponse = {
+  id: string;
+  name: string;
+}
+
 export default defineComponent({
   name: 'App',
 
@@ -43,21 +48,21 @@ export default defineComponent({
     return {
       image: 'https://course-vue.javascript.ru/api/images/1',
       uploadImage,
-      log: [],
-      selectedImage: null,
+      log: [] as string[],
+      selectedImage: null as File | null,
     };
   },
 
   methods: {
-    errorUploader() {
+    errorUploader(): Promise<void> {
       return new Promise((_, reject) => setTimeout(reject, 2000, new Error('Oops... Error.')));
     },
 
-    handleUpload(response) {
+    handleUpload(response: UploadResponse) {
       this.log.push(`[UPLOAD]: Image Id = ${response.id}`);
     },
 
-    handleSelect(file) {
+    handleSelect(file: UploadResponse) {
       this.log.push(`[SELECT]: ${file.name}`);
     },
 
@@ -65,7 +70,7 @@ export default defineComponent({
       this.log.push(`[REMOVED]`);
     },
 
-    handleError(error) {
+    handleError(error: Error) {
       this.log.push(`[ERROR]: ${error.message}`);
     },
   },

@@ -66,29 +66,29 @@ export default defineComponent({
   emits: ['update:modelValue'],
 
   computed: {
-    componentType() {
+    componentType(): string {
       return this.multiline ? 'textarea' : 'input';
     },
 
-    showIconLeft() {
+    showIconLeft(): boolean {
       return Boolean(this.$slots['left-icon']);
     },
 
-    showIconRight() {
+    showIconRight(): boolean {
       return Boolean(this.$slots['right-icon']);
     },
 
-    updateEvent() {
+    updateEvent(): string {
       return this.modelModifiers.lazy ? 'change' : 'input';
     },
   },
 
   methods: {
-    updateInput(event: Event) {
+    updateInput(event: Event): void {
       this.$emit('update:modelValue', (event.target as HTMLInputElement).value);
     },
 
-    focus() {
+    focus(): void {
       (this.$refs.input as HTMLInputElement).focus();
     },
   },

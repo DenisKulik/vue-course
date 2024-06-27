@@ -35,7 +35,7 @@ export default defineComponent({
 
   computed: {
     value() {
-      if (!this.modelValue) return null;
+      if (!this.modelValue) return undefined;
 
       const date = new Date(this.modelValue);
       let hours;
@@ -56,7 +56,7 @@ export default defineComponent({
             return `${hours}:${minutes}`;
           }
         default:
-          return null;
+          return undefined;
       }
     },
   },
@@ -64,7 +64,7 @@ export default defineComponent({
   methods: {
     handleInput(event: Event) {
       const value = (event.target as HTMLInputElement).valueAsNumber;
-      this.$emit('update:modelValue', value || null);
+      this.$emit('update:modelValue', value || undefined);
     },
   },
 });

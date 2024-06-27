@@ -28,7 +28,7 @@ export default defineComponent({
       get() {
         return this.modelValue;
       },
-      set(value) {
+      set(value: boolean) {
         this.$emit('update:modelValue', value);
       },
     },
