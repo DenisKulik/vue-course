@@ -11,12 +11,20 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import type { PropType } from 'vue';
+
+type SensorType = {
+  id: number,
+  label: string,
+  value: number,
+  unit: string
+}
 
 export default defineComponent({
   name: 'SensorsDataRow',
 
   props: {
-    sensor: Object,
+    sensor: Object as PropType<SensorType>,
   },
 });
 </script>

@@ -13,11 +13,7 @@ export default defineComponent({
   name: 'App',
 
   created() {
-    // Здесь лучше использовать Composition API, но мы с ним пока не знакомы
-    // Для примера и ручного тестирования подойдёт и такое нетипичное решение
-
     this.source = ref(0);
-
     this.debouncedSource = debouncedRef(this.source, 1000);
   },
 });

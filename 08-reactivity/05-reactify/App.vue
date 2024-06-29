@@ -18,10 +18,6 @@ export default defineComponent({
   name: 'App',
 
   created() {
-    // Здесь лучше использовать Composition API, но мы с ним пока не знакомы
-    // Для примера и ручного тестирования подойдёт и такое нетипичное решение
-
-    // Исходные обычные чистые функции
     const sum = (a: number, b: number) => a + b; // (a, b) => a + b;
     const sqr = (num: number) => num ** 2;
     const minutesToHHMM = (minutes: number) =>
@@ -43,7 +39,6 @@ export default defineComponent({
     this.computedSumFooBar = reactiveSum(this.foo, this.bar);
     this.computedMinutesToHHMMFoo = reactiveMinutesToHHMM(this.foo);
     this.computedMinutesToHHMMSqrFoo = reactiveMinutesToHHMM(this.computedSqrFoo);
-    // this.computedStringLength = reactiveSum(a, b);
   },
 });
 </script>

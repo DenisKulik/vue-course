@@ -7,9 +7,17 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import type { PropType } from 'vue';
 import { SensorsDataController } from '../services/SensorsDataController';
 import { SensorsDataStreamingService } from '../services/SensorsDataStreamingService';
 import SensorsDataRow from './SensorsDataRow';
+
+type SensorType = {
+  id: number,
+  label: string,
+  value: number,
+  unit: string
+}
 
 export default defineComponent({
   name: 'SensorsDataView',
@@ -18,7 +26,8 @@ export default defineComponent({
 
   data() {
     return {
-      sensors: null,
+      sensors: null as null | { [key: number]: SensorType },
+      sensorsDataController: null as null | SensorsDataController,
     };
   },
 
@@ -28,21 +37,21 @@ export default defineComponent({
 
     // Раз в секунду запрашиваем и выводим новые данные сенсоров
     setInterval(() => {
-      const data = this.sensorsDataController.getData();
+      const data = this.sensorsDataController?.getData();
     }, 1000);
   },
 
   beforeUnmount() {
-    this.sensorsDataController.removeDataCallback(this.callback);
-    this.sensorsDataController.close();
+    this.sensorsDataController?.removeDataCallback(this.callback);
+    this.sensorsDataController?.close();
   },
 
   methods: {
-    callback(data) {
+    callback(data: { [key: number]: SensorType }) {
       this.setData(data);
     },
 
-    setData(sensors) {
+    setData(sensors: { [key: number]: SensorType }) {
       this.sensors = {};
 
       for (const sensorId in sensors) {

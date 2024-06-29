@@ -34,11 +34,11 @@ export default defineComponent({
   },
 
   methods: {
-    handleSendSubmit() {
+    handleSendSubmit(): void {
       this.send();
     },
 
-    send() {
+    send(): void {
       this.messages.push({
         id: lastId++,
         text: this.newMessage,
