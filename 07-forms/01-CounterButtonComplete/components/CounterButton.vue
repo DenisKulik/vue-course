@@ -26,7 +26,7 @@ export default defineComponent({
   },
 
   methods: {
-    increment() {
+    increment(): void {
       this.localCount += 1;
     },
   },
@@ -39,7 +39,7 @@ export default defineComponent({
       immediate: true,
     },
 
-    localCount(newValue) {
+    localCount(newValue: number) {
       this.$emit('update:count', newValue);
     },
   },

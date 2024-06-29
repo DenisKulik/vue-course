@@ -74,7 +74,8 @@ export default defineComponent({
 
   methods: {
     focus() {
-      this.$refs['input'].focus();
+      const input = this.$refs['input'] as HTMLInputElement;
+      input.focus();
     },
   },
 });

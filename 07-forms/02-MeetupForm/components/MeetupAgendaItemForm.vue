@@ -45,9 +45,17 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import type { PropType } from 'vue';
 import UiFormGroup from './UiFormGroup.vue';
 import UiIcon from './UiIcon.vue';
 import UiInput from './UiInput.vue';
+
+type AgendaItem = {
+  startsAt: string;
+  endsAt: string;
+  title: string;
+  description: string;
+};
 
 export default defineComponent({
   name: 'MeetupAgendaItemForm',
@@ -56,7 +64,7 @@ export default defineComponent({
 
   props: {
     agendaItem: {
-      type: Object,
+      type: Object as PropType<AgendaItem>,
       required: true,
     },
   },

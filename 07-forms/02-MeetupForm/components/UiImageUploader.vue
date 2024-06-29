@@ -48,14 +48,14 @@ export default defineComponent({
   },
 
   computed: {
-    textInfo() {
+    textInfo(): string {
       if (this.isLoading) return 'Загрузка...';
       return this.imageUrl ? 'Удалить изображение' : 'Загрузить изображение';
     },
   },
 
   methods: {
-    async handleSelect(event: Event) {
+    async handleSelect(event: Event): Promise<void> {
       const input = event.target as HTMLInputElement;
       const file = input.files![0];
       this.$emit('select', file);
@@ -78,7 +78,7 @@ export default defineComponent({
       }
     },
 
-    handleClick(event: Event) {
+    handleClick(event: Event): void {
       if (this.imageUrl) {
         event.preventDefault();
         this.handleRemove();
@@ -86,7 +86,7 @@ export default defineComponent({
       }
     },
 
-    handleRemove() {
+    handleRemove(): void {
       this.$emit('remove');
       const input = this.$refs.input as HTMLInputElement;
       input.value = '';

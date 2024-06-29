@@ -34,7 +34,7 @@ export default defineComponent({
   },
 
   computed: {
-    value() {
+    value(): string | undefined {
       if (!this.modelValue) return undefined;
 
       const date = new Date(this.modelValue);
@@ -63,7 +63,8 @@ export default defineComponent({
 
   methods: {
     handleInput(event: Event) {
-      const value = (event.target as HTMLInputElement).valueAsNumber;
+      const target = event.target as HTMLInputElement;
+      const value = target.value;
       this.$emit('update:modelValue', value || undefined);
     },
   },

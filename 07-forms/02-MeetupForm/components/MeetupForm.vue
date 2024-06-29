@@ -137,11 +137,11 @@ export default defineComponent({
   },
 
   methods: {
-    onSubmit() {
+    onSubmit(): void {
       this.$emit('submit', this.cloneObject(this.localMeetup) as MeetupType);
     },
 
-    onAddAgendaItem() {
+    onAddAgendaItem(): void {
       const agendaItem = createAgendaItem();
       if (this.localMeetup.agenda.length) {
         agendaItem.startsAt = this.localMeetup.agenda[this.localMeetup.agenda.length - 1].endsAt;
@@ -150,23 +150,23 @@ export default defineComponent({
       this.localMeetup.agenda.push(agendaItem);
     },
 
-    updateAgendaItem(index: number, newAgendaItem: AgendaItemType) {
+    updateAgendaItem(index: number, newAgendaItem: AgendaItemType): void {
       this.localMeetup.agenda[index] = newAgendaItem;
     },
 
-    onRemoveAgendaItem(index: number) {
+    onRemoveAgendaItem(index: number): void {
       this.localMeetup.agenda.splice(index, 1);
     },
 
-    onSelectImage(image: File | null) {
+    onSelectImage(image: File | null): void {
       this.localMeetup.imageToUpload = image;
     },
 
-    onRemoveImage() {
+    onRemoveImage(): void {
       this.localMeetup.imageToUpload = null;
     },
 
-    cloneObject(object: any) {
+    cloneObject(object: any): object {
       return JSON.parse(JSON.stringify(object));
     },
   },

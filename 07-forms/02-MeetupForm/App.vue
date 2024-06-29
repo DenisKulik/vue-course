@@ -55,17 +55,17 @@ export default defineComponent({
   },
 
   methods: {
-    handleSubmit(meetup: MeetupType) {
+    handleSubmit(meetup: MeetupType): void {
       this.meetup = meetup;
       alert(JSON.stringify(this.meetup, null, 2));
     },
 
-    handleCancel() {
+    handleCancel(): void {
       this.meetup = createMeetup();
       alert('Cancel');
     },
 
-    fill() {
+    fill(): void {
       this.filled = true;
       this.meetup = {
         id: 42,

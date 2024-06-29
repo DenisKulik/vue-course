@@ -11,6 +11,17 @@
 import { defineComponent } from 'vue';
 import MeetupAgendaItemForm from './components/MeetupAgendaItemForm.vue';
 
+type AgendaItemType = {
+  id: number;
+  startsAt: string;
+  endsAt: string;
+  type: string;
+  title: string | null;
+  description: string | null;
+  speaker: string | null;
+  language: string | null;
+};
+
 export default defineComponent({
   name: 'App',
 
@@ -27,7 +38,7 @@ export default defineComponent({
         description: null,
         speaker: null,
         language: null,
-      },
+      } as AgendaItemType,
     };
   },
 

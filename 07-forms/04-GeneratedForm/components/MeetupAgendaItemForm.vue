@@ -49,10 +49,10 @@ type AgendaItemType = {
   startsAt: string;
   endsAt: string;
   type: string;
-  title: string;
-  description: string;
-  speaker: string;
-  language: string;
+  title: string | null;
+  description: string | null;
+  speaker: string | null;
+  language: string | null;
 };
 
 const agendaItemTypeIcons = {
@@ -77,10 +77,12 @@ const agendaItemDefaultTitles = {
   other: 'Другое',
 };
 
+type AgendaItemTypeKey = keyof typeof agendaItemDefaultTitles;
+
 const agendaItemTypeOptions = Object.entries(agendaItemDefaultTitles).map(([type, title]) => ({
-  value: type,
+  value: type as AgendaItemTypeKey,
   text: title,
-  icon: agendaItemTypeIcons[type],
+  icon: agendaItemTypeIcons[type as AgendaItemTypeKey],
 }));
 
 const talkLanguageOptions = [
@@ -194,27 +196,27 @@ export default defineComponent({
   },
 
   methods: {
-    onRemove() {
+    onRemove(): void {
       this.$emit('remove');
     },
 
-    parseTime(time) {
+    parseTime(time: string): number {
       const [hours, minutes] = time.split(':').map(Number);
       return hours * 60 + minutes;
     },
 
-    formatTime(minutes) {
+    formatTime(minutes: number): string {
       const hours = Math.floor(minutes / 60);
       const mins = minutes % 60;
       return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
     },
 
-    adjustTime(minutes) {
+    adjustTime(minutes: number): number {
       const totalMinutesInDay = 24 * 60;
       return (minutes + totalMinutesInDay) % totalMinutesInDay;
     },
 
-    diffTime(newTime: string, oldTime: string) {
+    diffTime(newTime: string, oldTime: string): number {
       const newMinutes = this.parseTime(newTime);
       const oldMinutes = this.parseTime(oldTime);
       return newMinutes - oldMinutes;

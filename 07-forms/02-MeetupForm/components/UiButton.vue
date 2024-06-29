@@ -6,6 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import type { PropType } from 'vue';
 
 const buttonClasses = {
   primary: 'button_primary',
@@ -18,7 +19,7 @@ export default defineComponent({
 
   props: {
     tag: {
-      type: [String, Object, Function],
+      type: String,
       default: 'button',
     },
 
@@ -28,14 +29,14 @@ export default defineComponent({
     },
 
     variant: {
-      type: String,
+      type: String as PropType<keyof typeof buttonClasses>,
       default: 'secondary',
-      validator: (value) => Object.keys(buttonClasses).includes(value),
+      validator: (value: string) => Object.keys(buttonClasses).includes(value),
     },
   },
 
   computed: {
-    variantClass() {
+    variantClass(): string {
       return buttonClasses[this.variant];
     },
 

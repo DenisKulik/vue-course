@@ -41,9 +41,9 @@ export default defineComponent({
     options: {
       type: Array,
       required: true,
-      validator: (options) =>
+      validator: (options: any) =>
         options.every(
-          (option) => typeof option === 'object' && option !== null && 'value' in option && 'text' in option,
+          (option: any) => typeof option === 'object' && option !== null && 'value' in option && 'text' in option,
         ),
     },
 
@@ -67,11 +67,11 @@ export default defineComponent({
 
   computed: {
     selected() {
-      return this.options.find((option) => option.value === this.modelValue);
+      return this.options.find((option: any) => option.value === this.modelValue);
     },
 
     hasIcons() {
-      return this.options.some((option) => option.icon);
+      return this.options.some((option: any) => option.icon);
     },
 
     selectModel: {
@@ -79,7 +79,7 @@ export default defineComponent({
         return this.modelValue;
       },
 
-      set(value) {
+      set(value: any) {
         this.select(value);
       },
     },

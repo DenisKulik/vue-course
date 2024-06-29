@@ -2,19 +2,30 @@
   <div class="sample wrapper bg-grey page">
     <div class="container">
       <pre><code>{{ agendaItem }}</code></pre>
-      <MeetupAgendaItemForm v-model:agenda-item="agendaItem" @remove="handleRemove" />
+      <MeetupAgendaItemForm v-model:agenda-item="agendaItem" @remove="handleRemove"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import {defineComponent} from 'vue';
 import MeetupAgendaItemForm from './components/MeetupAgendaItemForm.vue';
+
+type AgendaItemType = {
+  id: number;
+  startsAt: string;
+  endsAt: string;
+  type: string;
+  title: string | null;
+  description: string | null;
+  speaker: string | null;
+  language: string | null;
+};
 
 export default defineComponent({
   name: 'App',
 
-  components: { MeetupAgendaItemForm },
+  components: {MeetupAgendaItemForm},
 
   data() {
     return {
@@ -27,7 +38,7 @@ export default defineComponent({
         description: null,
         speaker: null,
         language: null,
-      },
+      } as AgendaItemType,
     };
   },
 
