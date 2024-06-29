@@ -36,7 +36,7 @@ export default defineComponent({
   },
 
   computed: {
-    coverStyle() {
+    coverStyle(): string {
       return this.cover ? `url('${this.cover}')` : `var(--default-cover)`;
     },
   },

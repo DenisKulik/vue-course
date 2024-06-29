@@ -33,13 +33,13 @@ export default defineComponent({
 
   computed: {
     isActive() {
-      return this.buttonGroup.activeValue.value === this.value;
+      return this.buttonGroup?.activeValue.value === this.value;
     },
   },
 
   methods: {
     onClick() {
-      this.buttonGroup.updateActiveValue(this.value);
+      this.buttonGroup?.updateActiveValue(this.value);
     },
   },
 });

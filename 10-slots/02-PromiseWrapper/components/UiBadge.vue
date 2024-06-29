@@ -4,6 +4,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import type { PropType } from 'vue';
 
 type badgeClassesType = {
   primary: string;
@@ -15,20 +16,22 @@ const badgeClasses: badgeClassesType = {
   success: 'badge_success',
 };
 
+type badgeType = keyof badgeClassesType;
+
 export default defineComponent({
   name: 'UiBadge',
 
   props: {
     type: {
-      type: String,
+      type: String as PropType<badgeType>,
       required: false,
-      validator: (value) => Object.keys(badgeClasses).includes(value),
+      validator: (value: string) => Object.keys(badgeClasses).includes(value),
     },
   },
 
   computed: {
     badgeClass() {
-      return badgeClasses[this.type];
+      return badgeClasses[this.type as badgeType] ?? '';
     },
   },
 });

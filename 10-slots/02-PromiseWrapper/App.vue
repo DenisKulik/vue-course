@@ -35,7 +35,7 @@ export default defineComponent({
   data() {
     return {
       meetupId: undefined,
-      fetchMeetupPromise: undefined,
+      fetchMeetupPromise: undefined as Promise<any> | undefined,
     };
   },
 

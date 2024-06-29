@@ -12,7 +12,7 @@ export default defineComponent({
 
   props: {
     tag: {
-      type: [String, Object, Function],
+      type: String,
       default: 'div',
     },
   },

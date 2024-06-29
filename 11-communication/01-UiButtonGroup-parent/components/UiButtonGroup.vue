@@ -27,7 +27,7 @@ export default defineComponent({
   },
 
   methods: {
-    updateActiveValue(value) {
+    updateActiveValue(value: string): void {
       this.$emit('update:modelValue', value);
     },
   },
