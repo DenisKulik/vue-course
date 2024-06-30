@@ -17,13 +17,20 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent} from "vue";
 import MeetupsHeader from './components/MeetupsHeader.vue';
 import MeetupsFooter from './components/MeetupsFooter.vue';
 import UiContainer from './components/UiContainer.vue';
 import { PROGRESS_KEY } from './plugins/progress/index.js';
 
-export default {
+type ProgressPlugin = {
+  start: (id: string) => void;
+  finish: (id: string) => void;
+  fail: () => void;
+}
+
+export default defineComponent({
   name: 'App',
 
   components: {
@@ -33,9 +40,9 @@ export default {
   },
 
   inject: {
-    progress: PROGRESS_KEY,
+    progress: PROGRESS_KEY as symbol,
   },
-};
+});
 </script>
 
 <style>
